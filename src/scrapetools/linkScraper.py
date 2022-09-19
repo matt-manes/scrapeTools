@@ -17,7 +17,7 @@ class LinkScraper:
         leading or trailing forward slashes."""
         formattedLinks = []
         for link in links:
-            link = link.strip(' \n\t\r').replace('"','').replace('\\','')
+            link = link.strip(' \n\t\r').replace('"','').replace('\\','').replace('\'','')
             parsedUrl = urlparse(link)
             if all(ch not in link for ch in '@ '):
                 parsedUrl = list(parsedUrl)
@@ -63,6 +63,19 @@ class LinkScraper:
         """ Scrape all link types. """
         for scrape in [self.scrapePageLinks,self.scrapeImgLinks,self.scrapeScriptLinks]:
             scrape()
+        self._mergeImageLinksFromNonImgTags()
+    
+    def _mergeImageLinksFromNonImgTags(self):
+        """ Finds links in self.scriptLinks and self.pageLinks
+        that have one of these image file extensions and adds them
+        to self.imgLinks"""
+        formats = ['.jpg', '.jpeg', '.png', '.svg', '.bmp', '.tiff',
+                    '.pdf', '.eps', '.gif', '.jfif', '.webp', '.heif',
+                    '.avif', '.bat', '.bpg']
+        for link in self.scriptLinks+self.pageLinks:
+            if any(ext in link for ext in formats):
+                self.imgLinks.append(link)
+        self.imgLinks = sorted(self._removeDuplicates(self.imgLinks))
     
     def getLinks(self, linkType:str='all', sameSiteOnly:bool=False, excludedLinks:list[str]=None)->list[str]:
         """ Returns a list of urls found on page.\n
