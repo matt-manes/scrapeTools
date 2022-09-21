@@ -48,6 +48,16 @@ def findLastValidCharacterOffset(text:str)->int:
             i += 1
     return len(text)-1
 
+def stripUnicode(emails:list[str])->list[str]:
+    """ Removes unicode text that often gets picked
+    up at the front of email addresses and returns the list."""
+    strippedEmails = []
+    for email in emails:
+        for text in ['u003e', 'u00a0']:
+            email = email.strip(text)
+        strippedEmails.append(email)
+    return strippedEmails
+
 def scrapeEmails(text:str, displayProgressBar:bool=True)->list[str]:
     """ Extracts potential emails from given text\n
     and returns as a list of strings."""
@@ -78,6 +88,6 @@ def scrapeEmails(text:str, displayProgressBar:bool=True)->list[str]:
                 lastStopdex = atdex + len(email.split('@')[1]) + 1
             except Exception as e:
                 lastStopdex = atdex+1
-        emails = sorted(list(set(emails)))
+        emails = sorted(list(set(stripUnicode(emails))))
     return emails
 
