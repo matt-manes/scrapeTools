@@ -3,7 +3,7 @@ requires = ["hatchling"]
 build-backend = "hatchling.build"
 
 [project]
-name = "scrapetools"
-version = "0.0.6"
+name = "scrapeTools"
+version = "0.0.7"
 requires-python = ">=3.10"
-dependencies = ["bs4","phonenumbers","progbar"]
+dependencies = ["bs4","phonenumbers"]
