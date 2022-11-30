@@ -14,10 +14,10 @@ def getNumConsecutiveNumbers(text:str, reverse:bool=False)->int:
 def findBySeparator(text:str, separator:str)->list[str]:
     """Attempts to detect phone numbers according to these
     patterns by scanning for separators (typically '-.')
-    and how many consecutive numbers follow or precede them: 
-    (xxx)xxx{separator}xxxx
-    (xxx) xxx{separator}xxxx
-    (xxx){separator}xxx{separator}xxxx
+    and how many consecutive numbers follow or precede them:\n 
+    (xxx)xxx{separator}xxxx\n
+    (xxx) xxx{separator}xxxx\n
+    (xxx){separator}xxx{separator}xxxx\n
     xxx{separator}xxx{separator}xxxx"""
     count = text.count(separator)
     numbers = []

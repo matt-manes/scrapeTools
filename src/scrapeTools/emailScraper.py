@@ -20,6 +20,8 @@ def validate(email:str)->bool:
     #at least 1 character in local is alphabetical
     #1st character is not '@' or '.'
     #last character is not '@' or '.'
+    #character after '@' is not '.'
+    #doesn't start with 'www.'
     #local is two or more characters
     #domain is more than 3 characters
     #domain doesn't consist of only numbers
@@ -32,6 +34,8 @@ def validate(email:str)->bool:
             any(ch.isalpha() for ch in local),
             email[0] not in ['@','.'],
             email[-1] not in ['@','.'],
+            email[email.find('@')+1] != '.',
+            not email.startswith('www.'),
             len(local) >= 2,
             len(domain) > 3,
             not all(ch.isnumeric() 

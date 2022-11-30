@@ -87,13 +87,13 @@ class LinkScraper:
     
     def getLinks(self, linkType:str='all', sameSiteOnly:bool=False, 
                  excludedLinks:list[str]=None)->list[str]:
-        """ Returns a list of urls found on page.\n
-        'linkType' can be 'all', 'page', 'img', or 'script'.
-        'sameSiteOnly' removes any external urls.\n
-        'excludedLinks' can be a list of urls to filter out of the return results.\n
-        Useful for excluding duplicates when recursively scraping a website.\n
+        """ Returns a list of urls found on the page.\n
+        :param linkType: Can be 'all', 'page', 'img', or 'script'.\n
+        :param sameSiteOnly: Excludes external urls if True.\n
+        :param excludedLinks: A list of urls to filter out of the results.
+        Useful for excluding duplicates when recursively scraping a website.
         Can also be used with linkType='all' to get two link types in one call:\n
-        e.g. links = linkScraper.getLinks(linkType = 'all', excludedLinks = linkScraper.scriptLinks)\n
+        e.g. links = linkScraper.getLinks(linkType = 'all', excludedLinks = linkScraper.scriptLinks)
         will return page links and img links."""
         match linkType:
             case 'all':
@@ -111,5 +111,3 @@ class LinkScraper:
         if excludedLinks:
             links = [link for link in links if link not in excludedLinks]
         return sorted(links)
-
-    
