@@ -2,10 +2,12 @@ from string import printable
 from urllib.parse import unquote
 
 def validate(email:str)->bool:
-    """ Checks string to see if it's likely an email address.\n
-    Returns True or False.\n
-    Some emails violating some of these rules\
-    may technically be valid, but are practically\
+    """ Checks string to see if it's likely an email address.
+    
+    Returns True or False.
+    
+    Some emails violating some of these rules
+    may technically be valid, but are practically
     never seen in use out in the wild."""
     if email.count('@') != 1\
     or email.count('.') == 0:
@@ -57,10 +59,13 @@ def validate(email:str)->bool:
 
 def findLastValidCharacterOffset(text:str)->int:
     """ Iterates through a string to find the index of the last valid character,
-    assuming that string either starts or ends with '@'.\n
-    If the string doesn't start or end with '@', an Exception is raised.\n
+    assuming that string either starts or ends with '@'.
+    
+    If the string doesn't start or end with '@', an Exception is raised.
+    
     Returns the number of valid characters between '@' and first invalid character.
-    e.g. '@abcde%' will return 5 and '#123@' will return 3.\n
+    e.g. '@abcde%' will return 5 and '#123@' will return 3.
+    
     If no invalid characters are found, the function will return
     'len(text)-1'."""
     
@@ -94,7 +99,7 @@ def stripUnicode(emails:list[str])->list[str]:
     return strippedEmails
 
 def scrapeEmails(text:str)->list[str]:
-    """ Extracts potential emails from given text\n
+    """ Extracts potential emails from given text
     and returns as a list of strings."""
     if '%' in text:
         #decode percent encoding

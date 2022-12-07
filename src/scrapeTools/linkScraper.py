@@ -10,9 +10,10 @@ class LinkScraper:
         self.scriptLinks = []
     
     def formatRelativeLinks(self, links:list[str])->list[str]:
-        """ Parses list of links and constructs a full url\n
-        according to self.parsedUrl for the ones that don't have a\n
-        'netloc' property returned by urlparse.\n
+        """ Parses list of links and constructs a full url
+        according to self.parsedUrl for the ones that don't have a
+        'netloc' property returned by urlparse.
+        
         Full urls are returned unedited other than stripping any
         leading or trailing forward slashes."""
         formattedLinks = []
@@ -87,12 +88,16 @@ class LinkScraper:
     
     def getLinks(self, linkType:str='all', sameSiteOnly:bool=False, 
                  excludedLinks:list[str]=None)->list[str]:
-        """ Returns a list of urls found on the page.\n
-        :param linkType: Can be 'all', 'page', 'img', or 'script'.\n
-        :param sameSiteOnly: Excludes external urls if True.\n
+        """ Returns a list of urls found on the page.
+        
+        :param linkType: Can be 'all', 'page', 'img', or 'script'.
+        
+        :param sameSiteOnly: Excludes external urls if True.
+        
         :param excludedLinks: A list of urls to filter out of the results.
         Useful for excluding duplicates when recursively scraping a website.
-        Can also be used with linkType='all' to get two link types in one call:\n
+        Can also be used with linkType='all' to get two link types in one call:
+        
         e.g. links = linkScraper.getLinks(linkType = 'all', excludedLinks = linkScraper.scriptLinks)
         will return page links and img links."""
         match linkType:
