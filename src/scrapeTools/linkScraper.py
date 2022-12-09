@@ -41,7 +41,7 @@ class LinkScraper:
         """ Finds all results according to tagName and attributeName.\n
         Filters out fragments."""
         return [tag.get(attributeName) 
-                for tag in self.soup.find_all(tagName, recursive=True) 
+                for tag in self.soup(tagName, recursive=True) 
                 if tag.get(attributeName) is not None 
                 and '#' not in tag.get(attributeName)]
     
