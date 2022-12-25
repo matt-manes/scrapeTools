@@ -1,5 +1,5 @@
 # scrapetools
-Install using <pre>python -m pip install git+https://github.com/matt-manes/scrapetools</pre>
+Install using <pre>python -m pip install git+https://github.com/matt-manes/scrapeTools</pre>
 Git must be installed and in your PATH.<br>
 <br>
 scrapeTools contains four modules: emailScraper, linkScraper, phoneScraper, and inputScraper.<br>
